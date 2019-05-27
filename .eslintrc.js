@@ -5,7 +5,10 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@typescript-eslint/parser',
+    ecmaFeatures: {
+      legacyDecotators: true
+    }
   },
   extends: [
     '@nuxtjs',
@@ -14,10 +17,17 @@ module.exports = {
     'prettier',
     'prettier/vue'
   ],
-  plugins: [
-    'prettier'
-  ],
+  plugins: ['@typescript-eslint', 'prettier'],
   // add your custom rules here
   rules: {
+    '@typescript-eslint/no-unused-vars': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        htmlWhitespaceSensitivity: 'ignore',
+        semi: false,
+        singleQuote: true
+      }
+    ]
   }
 }

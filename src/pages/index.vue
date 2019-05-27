@@ -2,15 +2,19 @@
   <section class="section">
     <div class="columns is-mobile">
       <card title="Free" icon="github-circle">
-        Open source on <a href="https://github.com/buefy/buefy"> GitHub</a>
+        Open source on
+        <a href="https://github.com/buefy/buefy">GitHub</a>
       </card>
 
       <card title="Responsive" icon="cellphone-link">
-        <b class="has-text-grey">Every</b> component is responsive
+        <b class="has-text-grey">Every</b>
+        component is responsive
       </card>
 
       <card title="Modern" icon="alert-decagram">
-        Built with <a href="https://vuejs.org/">Vue.js</a> and
+        Built with
+        <a href="https://vuejs.org/">Vue.js</a>
+        and
         <a href="http://bulma.io/">Bulma</a>
       </card>
 
@@ -21,14 +25,27 @@
   </section>
 </template>
 
-<script>
-import Card from '~/components/Card'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Card from '~/components/Card.vue'
 
-export default {
-  name: 'HomePage',
-
+@Component({
   components: {
     Card
   }
+})
+export default class PagesIndex extends Vue {
+  items: any = [
+    {
+      title: 'Home',
+      icon: 'home',
+      to: { name: 'index' }
+    },
+    {
+      title: 'Inspire',
+      icon: 'lightbulb',
+      to: { name: 'inspire' }
+    }
+  ]
 }
 </script>

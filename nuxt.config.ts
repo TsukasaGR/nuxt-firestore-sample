@@ -1,6 +1,9 @@
-import pkg from './package'
+import NuxtConfiguration from '@nuxt/config'
+import { Configuration as WebpackConfiguration } from 'webpack'
 
-export default {
+const pkg = require('./package')
+
+const config: NuxtConfiguration = {
   mode: 'universal',
   srcDir: 'src/',
 
@@ -56,9 +59,17 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
+    extend(
+      config: WebpackConfiguration,
+      ctx: {
+        isDev: boolean
+        isClient: boolean
+        isServer: boolean
+        loaders: any
+      }
+    ) {
       // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
+      if (ctx.isDev && ctx.isClient && config.module) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -69,3 +80,5 @@ export default {
     }
   }
 }
+
+export default config
